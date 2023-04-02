@@ -34,7 +34,7 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [removedCardId, setRemovedCardId] = useState("");
 
   const navigate = useNavigate();
@@ -201,6 +201,7 @@ function App() {
   }
 
   function handleTokenCheck() {
+    setLoading(true);
     const jwt = localStorage.getItem("jwt");
     if (!jwt) {
       return;
