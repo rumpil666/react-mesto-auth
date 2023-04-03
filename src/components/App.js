@@ -34,7 +34,6 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [removedCardId, setRemovedCardId] = useState("");
 
   const navigate = useNavigate();
@@ -171,9 +170,6 @@ function App() {
         setIsRegistrationSuccessful(false);
         openInfoTooltip();
       })
-      .finally(() => {
-        setLoading(false);
-      });
   }
 
   function handleAuthorization(data) {
@@ -189,9 +185,6 @@ function App() {
         console.log(`Ошибка: ${err}`);
         openInfoTooltip();
       })
-      .finally(() => {
-        setLoading(false);
-      });
   }
 
   function handleSignOut() {
@@ -201,7 +194,6 @@ function App() {
   }
 
   function handleTokenCheck() {
-    setLoading(true);
     const jwt = localStorage.getItem("jwt");
     if (!jwt) {
       return;
@@ -213,10 +205,7 @@ function App() {
         setIsLoggedIn(true);
         navigate("/", { replace: true });
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
@@ -229,9 +218,6 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  if (loading) {
-    return "Loading...";
-  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
