@@ -162,12 +162,13 @@ function App() {
       .register(data)
       .then((data) => {
         setIsRegistrationSuccessful(true);
-        openInfoTooltip();
         navigate("/sign-in", { replace: true });
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-        setIsRegistrationSuccessful(false);
+        setIsRegistrationSuccessful(false);  
+      })
+      .finally(() => {
         openInfoTooltip();
       })
   }
@@ -222,7 +223,6 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <>
           <Header
             loggedIn={isLoggedIn}
             userEmail={authorizationEmail}
@@ -292,7 +292,6 @@ function App() {
           />
 
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-        </>
       </div>
     </CurrentUserContext.Provider>
   );

@@ -1,19 +1,15 @@
 import { useEffect, useContext } from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import useForm from "./UseForm";
+import useFormValidation from "../hooks/UseFormValidation";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
-  const currentUser = useContext(CurrentUserContext);
 
   const { enteredValues, errors, handleChange, isFormValid, resetForm } =
-    useForm();
+    useFormValidation();
 
   useEffect(() => {
-    currentUser ? resetForm(currentUser) : resetForm();
-    enteredValues.title = "";
-    enteredValues.link = "";
-  }, [resetForm, isOpen, currentUser]);
+    resetForm();
+  }, [resetForm, isOpen,]);
 
   function handleSubmit(e) {
     e.preventDefault();

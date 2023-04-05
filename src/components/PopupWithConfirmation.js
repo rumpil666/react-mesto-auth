@@ -17,7 +17,7 @@ function PopupWithConfirmation({ isOpen, onClose, card, onLoading, onSubmit }) {
       onClose={onClose}
       onLoading={onLoading}
       onSubmit={handleSubmit}
-    ></PopupWithForm>
+    />
   );
 }
 export default PopupWithConfirmation;

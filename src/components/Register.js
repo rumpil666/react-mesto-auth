@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import useForm from "./UseForm";
+import useFormValidation from "../hooks/UseFormValidation";
 
 const Register = ({ onRegister }) => {
-  const { enteredValues, errors, handleChange } = useForm();
+  const { enteredValues, errors, handleChange } = useFormValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -12,7 +12,7 @@ const Register = ({ onRegister }) => {
   return (
     <div className="auth">
       <h2 className="auth__title">Регистрация</h2>
-      <form className="auth__form" onSubmit={handleSubmit} noValidate>
+      <form className="auth__form form" onSubmit={handleSubmit} noValidate>
         <label className="auth__field">
           <input
             onChange={handleChange}

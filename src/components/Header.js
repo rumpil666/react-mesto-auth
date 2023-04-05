@@ -1,34 +1,42 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 
 import logo from "../images/logo.svg";
 
-function Header({ loggedIn, userEmail, onSignOut }) {
-  const location = useLocation();
+function Header({ userEmail, onSignOut }) {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Место-Россия" />
-      {location.pathname === "/sign-in" && (
-        <Link to="/sign-up" className="header__link">
-          Регистрация
-        </Link>
-      )}
-      {location.pathname === "/sign-up" && (
-        <Link to="/sign-in" className="header__link">
-          Войти
-        </Link>
-      )}
-      {loggedIn && (
-        <nav className="header__nav">
-          <span className="header__span">{userEmail}</span>
-          <button
-            className="header__sign-out button"
-            onClick={() => onSignOut()}
-          >
-            Выйти
-          </button>
-        </nav>
-      )}
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <div className="header__wrapper">
+              <span className="header__span">{userEmail}</span>
+              <button className="header__sign-out button" onClick={onSignOut}>
+                Выйти
+              </button>
+            </div>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <Link className="header__link" to="signin">
+              Войти
+            </Link>
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <Link className="header__link" to="signup">
+              Регистрация
+            </Link>
+          }
+        />
+      </Routes>
     </header>
   );
 }

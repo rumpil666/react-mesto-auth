@@ -1,7 +1,7 @@
-import useForm from "./UseForm";
+import useFormValidation from "../hooks/UseFormValidation";
 
 const Login = ({ onLogin }) => {
-  const { enteredValues, errors, handleChange } = useForm({});
+  const { enteredValues, errors, handleChange } = useFormValidation({});
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,7 +14,7 @@ const Login = ({ onLogin }) => {
   return (
     <div className="auth">
       <h2 className="auth__title">Вход</h2>
-      <form className="auth__form" onSubmit={handleSubmit} noValidate>
+      <form className="auth__form form" onSubmit={handleSubmit} noValidate>
         <label className="auth__field">
           <input
             onChange={handleChange}
