@@ -1,4 +1,6 @@
 .header__link {
+    display: table-cell;
+    vertical-align: bottom;
     text-decoration: none;
     color: #fff;
     font-weight: 400;
